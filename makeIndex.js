@@ -1,11 +1,8 @@
 const _ = require('highland');
 const fs = require('fs');
 const csv = require('csv-parser');
-
 const es = require('elasticsearch');
-
 const INDEX_NAME = 'demo_es_index';
-
 
 const start = async () => {
   const client = new es.Client({
