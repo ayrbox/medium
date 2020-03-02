@@ -1,0 +1,5 @@
+FROM mongo:latest
+
+ADD ./bin/rs.sh /usr/local/bin/
+    
+RUN chmod +x /usr/local/bin/rs.sh

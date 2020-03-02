@@ -1,0 +1,50 @@
+version: '3.4'
+
+services:
+  mongo1:
+    hostname: mongo1
+    container_name: localmongo1 
+    image: mongo:latest
+    restart: always
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    environment:      
+      MONGO_INITDB_DATABASE: userdb 
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+
+
+  # mongo2:
+  #   hostname: mongo2
+  #   container_name: localmongo2 
+  #   image: mongo:latest
+  #   restart: always
+  #   expose:
+  #     - 27017
+  #   ports:
+  #     - 27018:27017
+  #   # command: '--quiet --bind_ip_all --replSet rs0'
+  #   entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+
+  # mongo3:
+  #   hostname: mongo3
+  #   container_name: localmongo3 
+  #   image: mongo:latest
+  #   restart: always
+  #   expose:
+  #     - 27017
+  #   ports:
+  #     - 27019:27017
+  #   # command: '--quiet --bind_ip_all --replSet rs0'
+  #   entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+
+  # rsinit:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile-rsinit
+  #   depends_on:
+  #     - mongo1
+  #     - mongo2
+  #     - mongo3
+  #   entrypoint: ["sh", "-c", "rs.sh"]
