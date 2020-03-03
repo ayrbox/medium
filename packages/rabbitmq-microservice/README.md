@@ -1,5 +1,18 @@
 # RabbitMQ in microservice
 
+Run rabbit mq with docker.
+
+```sh
+$ docker-compose up -d;
+```
+
+Check logs from container
+```sh
+$ docker-compose logs -f;
+```
+
+To access rabbit mq.
+[Rabbit MQ UI](!http://localhost:15672/#/)
 
 References: 
 [How To Run Background Process In Node.js Using RabbitMQ?](!https://www.zeolearn.com/magazine/background-processing-in-node-js)
