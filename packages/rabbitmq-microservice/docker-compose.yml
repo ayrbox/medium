@@ -10,6 +10,10 @@ services:
       - '15672:15672'
     volumes:
       - 'rabbitmq_data:/bitnami'
+    # environment: 
+    #   RABBITMQ_USERNAME: app
+    #   RABBITMQ_PASSWORD: appPassw0rd 
+    # Default username and password is `user` and `bitnami`
 volumes:
   rabbitmq_data:
     driver: local
