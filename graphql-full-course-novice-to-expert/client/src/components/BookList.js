@@ -1,16 +1,8 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
-import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 
-const getBookQuery = gql`
-  {
-    books {
-      id
-      name
-    }
-  }
-`;
+import { getBookQuery } from '../queries';
 
 const BookList = ({ data }) => {
   const { books, loading } = data;

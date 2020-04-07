@@ -1,22 +1,35 @@
-import React from "react";
-import { Form, FormGroup, Label, Input } from "reactstrap";
-import { gql } from "apollo-boost";
+import React, { useState } from "react";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { graphql } from "react-apollo";
+import { compose } from 'recompose';
 
-const getAuthors = gql`
-  {
-    authors {
-      id
-      name
-    }
+import { getAuthors, addBookMutation } from '../queries';
+
+const AddBook = ({
+  getAuthorsQuery,
+  addBookMutation,
+}) => {
+
+  const { authors, loading } = getAuthorsQuery;
+
+  const [name, setName] = useState('');
+  const [genre, setGenre] = useState('');
+  const [authorId, setAuthorId] = useState('');
+
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    addBookMutation({
+      variables: {
+        name,
+        genre,
+        authorId,
+      },
+    });
   }
-`;
-
-const AddBook = ({ data }) => {
-  const { authors, loading } = data;
 
   return (
-    <Form>
+    <Form onSubmit={handleFormSubmit}>
       <h3>Add Book</h3>
       <FormGroup>
         <Label for="bookName">Book Name</Label>
@@ -25,28 +38,47 @@ const AddBook = ({ data }) => {
           name="name"
           id="bookName"
           placeholder="Name of book"
+          value={name}
+          onChange={({ target }) => setName(target.value)}
         />
       </FormGroup>
       <FormGroup>
         <Label for="bookGenre">Genre</Label>
-        <Input type="text" name="genre" id="bookGenre" placeholder="Genre" />
+        <Input
+        type="text"
+        name="genre" id="bookGenre"
+        placeholder="Genre"
+        value={genre}
+        onChange={({ target }) => setGenre(target.value) }
+        />
       </FormGroup>
       <FormGroup>
         <Label for="bookAuthor">Author</Label>
-        <Input type="select" name="author" id="bookAuthor">
+        <Input type="select" name="author" id="bookAuthor"
+          onChange={({ target }) => {
+            setAuthorId(target.value)
+          }}
+        >
           {loading ? (
             <option disabled>Loading authors...</option>
           ) : (
-            authors.map(({ id, name }) => (
-              <option key={id} value={id}>
-                {name}
-              </option>
-            ))
+            <>
+              <option value="">Select author...</option>
+              {authors.map(({ id, name }) => (
+                <option key={id} value={id}>
+                  {name}
+                </option>
+              ))}
+            </>
           )}
         </Input>
       </FormGroup>
+      <Button>Submit</Button>
     </Form>
   );
 };
 
-export default graphql(getAuthors)(AddBook);
+export default compose(
+  graphql(getAuthors, { name: 'getAuthorsQuery' }),
+  graphql(addBookMutation, { name: 'addBookMutation' }),
+)(AddBook);
