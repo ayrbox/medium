@@ -3,7 +3,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { graphql } from "react-apollo";
 import { compose } from 'recompose';
 
-import { getAuthors, addBookMutation, getBookQuery } from '../queries';
+import { getAuthors, addBookMutation, getBooksQuery } from '../queries';
 
 const AddBook = ({
   getAuthorsQuery,
@@ -25,7 +25,7 @@ const AddBook = ({
         authorId,
       },
       refetchQueries:[{
-        query: getBookQuery
+        query: getBooksQuery
       }]
     });
 
