@@ -1,9 +1,12 @@
 const Sequelize = require('sequelize');
 
+const updateFullName = (user) => {
+  const { firstName, lastName } = user;
+  user.fullName = `${firstName} ${lastName}`;
+  console.log('Sequalize Hooks');
+};
 
 module.exports = (sequelizeConnection) => {
-
-
   return sequelizeConnection.define('User', { 
     uuid: {
       type: Sequelize.UUID,
@@ -41,9 +44,7 @@ module.exports = (sequelizeConnection) => {
     }
   }, {
     hooks: {
-      beforeCreate: (user) => {
-        user.fullName = `${user.firstName} ${user.lastName}`;
-      }, 
-    }
+      beforeSave: updateFullName,
+    },
   });
-}
+};

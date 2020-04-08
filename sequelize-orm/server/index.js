@@ -1,7 +1,6 @@
 const express = require('express');
 const Sequelize = require('sequelize');
 
-
 const usersData = require('./users.json');
 
 const app = express();
@@ -44,6 +43,42 @@ app.get('/users/:uuid', (req, res) => {
   });
 });
 
+app.put('/users/:uuid', (req, res) => {
+  const { uuid }  = req.params;
+  User.findByPk(uuid).then(user => {
+    if(!user) {
+      res.status(404).send('User not found');
+      return;
+    }
+    user.update({
+      firstName: 'Sabin Raj',
+      lastName: 'Dangol',
+      email: 'sabin.dangol@hotmail.com',
+      bio: 'Javascript foo bar Developer',
+    }).then(() => {
+      res.json('User updated');
+    }).catch(err => {
+      res.status(500).send(err);
+    });
+  }).catch(err => {
+    res.status(500).send(err);
+  });
+});
+
+app.delete('/users/:uuid', (req, res) => {
+  const { uuid } = req.params;
+  User.destroy({
+    where: {
+      uuid,
+    },
+  }).then(() => {
+    res.send('User deleted');
+  }).catch(err => {
+    console.log(err);
+    res.status(404).send(err);
+  });
+});
+
 app.get('/users', (_, res) => {
   User.findAll().then(users => {
     res.json(users);
@@ -52,8 +87,6 @@ app.get('/users', (_, res) => {
     res.json(err);
   });
 });
-
-
 
 app.listen(port, () => {
   console.log('Runnign server on port', port);
