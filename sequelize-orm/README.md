@@ -1,0 +1,2 @@
+# Sequlize
+Plural Site Course

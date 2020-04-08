@@ -20,12 +20,16 @@ const User = connection.define('User', {
     primaryKey: true,
     defaultValue: Sequelize.UUIDV4,
   },
-  name: {
+  firstName: {
     type: Sequelize.STRING,
     validate: {
       len: [3],
     }
   },
+  lastName: {
+    type: Sequelize.STRING,
+  },
+  fullName: Sequelize.STRING,
   bio: {
     type: Sequelize.TEXT,
     validate: {
@@ -45,6 +49,12 @@ const User = connection.define('User', {
       isEmail: true,
     },
   }
+}, {
+  hooks: {
+    beforeCreate: (user) => {
+      user.fullName = `${user.firstName} ${user.lastName}`;
+    }, 
+  }
 });
 
 connection
@@ -53,7 +63,8 @@ connection
     force: true,
   }).then(() => {
     User.create({
-      name: 'Sabin Raj Dangol',
+      firstName: 'Sabin Raj',
+      lastName: 'Dangol',
       bio: 'lorem ipsum bio foo',
       email: 'sabin.dangol@hotmail.com',
     });
