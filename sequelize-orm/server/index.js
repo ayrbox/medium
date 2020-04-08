@@ -14,6 +14,11 @@ const connection = new Sequelize('db', 'user', 'pass', {
 });
 
 const User = require('./models/User')(connection);
+const Post = require('./models/Post')(connection);
+
+Post.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(Post, { foreignKey: 'userId' });
+
 connection
   .sync({
     logging: console.log,
@@ -24,6 +29,13 @@ connection
     }).catch((err) => {
       console.log('Error', err);
     });
+
+
+    Post.create({
+      title: 'Hello',
+      content: 'Lorem ipsum content which is long and used by everyone',
+    });
+
   }).then(() => {
     console.log('Connected to database.')
   });
@@ -60,6 +72,7 @@ app.put('/users/:uuid', (req, res) => {
     }).catch(err => {
       res.status(500).send(err);
     });
+
   }).catch(err => {
     res.status(500).send(err);
   });
@@ -85,6 +98,18 @@ app.get('/users', (_, res) => {
   }).catch(err => {
     console.log('Error getting all user', err);
     res.json(err);
+  });
+});
+
+
+app.get('/posts', (_, res) => {
+  Post.findAll({
+    include: [User],
+  }).then(posts => {
+    console.log(posts);
+    res.json(posts);
+  }).catch(err => {
+    res.status(404).send(err);
   });
 });
 
