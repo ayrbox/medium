@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TextField } from '@material-ui/core';
 import NumberFormat, { NumberFormatProps } from 'react-number-format';
 import { getIn } from 'formik';
-import { IFormikFieldProps } from '../types';
+import { IFormikFieldProps } from '../types/form';
 
 interface INumberFormatCustomProps extends NumberFormatProps {
   inputRef: (instance: NumberFormat | null) => void;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { getIn } from 'formik';
-import { IFormikFieldProps } from '../types';
+import { IFormikFieldProps } from '../types/form';
 
 const FormikDatePicker = ({
   form: { setFieldValue, setFieldTouched, touched, errors },
