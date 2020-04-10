@@ -31,7 +31,6 @@ export default class extends React.Component<IndexPageProps, {}> {
         <Layout>
           <Main>
             <LoanMain />
-            <h1>Hello EMI Calculator</h1>
             <TestComponent />
           </Main>
           <Aside>
