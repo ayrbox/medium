@@ -1,5 +1,10 @@
 import * as React from 'react'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LoanContextProvider from '../contexts/LoanContext'
+import DateFnsUtils from '@date-io/date-fns';
+import enGB from 'date-fns/locale/en-GB';
+
+
 import TestComponent from '../components/TestComponent'
 
 import Layout from '../layouts';
@@ -27,18 +32,21 @@ export default class extends React.Component<IndexPageProps, {}> {
   }
   public render() {
     return (
-      <LoanContextProvider>
-        <Layout>
-          <Main>
-            <LoanMain />
-            <TestComponent />
-          </Main>
-          <Aside>
-            Secondary Place holder
-          </Aside>
-        </Layout>
-      </LoanContextProvider>
-    )
+      <Layout>
+        <MuiPickersUtilsProvider
+          utils={DateFnsUtils}
+          locale={enGB}>
+          <LoanContextProvider>
+            <Main>
+              <LoanMain />
+            </Main>
+            <Aside>
+              Secondary Place holder
+            </Aside>
+          </LoanContextProvider>
+        </MuiPickersUtilsProvider>
+      </Layout>
+    );
   }
 }
 

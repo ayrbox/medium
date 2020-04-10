@@ -92,141 +92,116 @@ const LoanMain: React.FC = () => {
         <Formik
           initialValues={initialValues}
           onSubmit={(values, { setSubmitting }) => {
-            console.log('TODO: submit of the form');
-            // dispatch({
-            //   type: LoanActionTypes.SET_VALUES,
-            //   payload: schema.cast(values),
-            // });
-            // calculateLoan(schema.cast(values))
-            //   .then((data: ICalculation) => {
-            //     dispatch({
-            //       type: LoanActionTypes.SET_CALCULATION,
-            //       payload: data,
-            //     });
-
-            //     if (window && window.innerWidth < 1024) {
-            //       dispatch({
-            //         type: LoanActionTypes.SET_CALCULATION_MODAL_IS_OPEN,
-            //       });
-            //     }
-            //   })
-            //   .finally(() => setSubmitting(false));
+            console.log('Submit Values: ', values);
           }}
           validationSchema={schema}
           render={({ isSubmitting }) => (
             <Form>
               <FormField>
-                <Box>
-                  <Field
-                    name="amount"
-                    component={FormikNumberFormat}
-                    variant="outlined"
-                    label="Loan amount"
-                    fullWidth
-                    thousandSeparator
-                    decimalScale={2}
-                    disabled={isSubmitting}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            className={classes.inputButton}
-                            aria-label="toggle term currency"
-                            onClick={() =>  {
-                              console.log('set active currenty');
-                              // dispatch({
-                              //   type: LoanActionTypes.SET_ACTIVE_CURRENCY,
-                              // })
-                            }}>
-                            {state.currencies[0]}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Box>
-                <Box>
-                  <Field
-                    name="term"
-                    component={TextField}
-                    variant="outlined"
-                    label={'Loan Term'}
-                    fullWidth
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          months
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Box>
+                  <Box>
+                    <Field
+                      name="amount"
+                      component={FormikNumberFormat}
+                      variant="outlined"
+                      label="Load Amount"
+                      fullWidth
+                      thousandSeparator
+                      decimalScale={2}
+                      disabled={isSubmitting}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              className={classes.inputButton}
+                              aria-label="toggle term currency"
+                              onClick={() => {
+                                console.log('Dod you just try to click me');
+                              }}>
+                                GBP
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </Box>
+                  <Box>
+                    <Field
+                      name="term"
+                      component={TextField}
+                      variant="outlined"
+                      label="Loan Term"
+                      fullWidth
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            months
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                 </Box>
               </FormField>
               <FormField>
-                <Box>
-                  <Field
-                    name="start"
-                    component={FormikDatePicker}
-                    variant="outlined"
-                    label="First payment date"
-                    fullWidth
-                    disabled={isSubmitting}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-                </Box>
-                <Box>
-                  <Field
-                    name="rate"
-                    component={TextField}
-                    variant="outlined"
-                    label="Interest rate"
-                    fullWidth
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">%</InputAdornment>
-                      ),
-                    }}
-                  />
-                </Box>
-              </FormField>
-              <FormField>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-                    Payment schedule type
-                  </InputLabel>
-                  <Field
-                    name="procedure"
-                    component={Select}
-                    input={
-                      <OutlinedInput labelWidth={labelWidth} name="procedure" />
-                    }>
-                    <MenuItem value="A">Even total</MenuItem>
-                    <MenuItem value="D">Even principal</MenuItem>
-                  </Field>
-                </FormControl>
-                <Box>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked
-                        disabled={isSubmitting}
-                        onChange={() => {
-                          console.log('On Change set round');
-                          // dispatch({
-                          //   type: LoanActionTypes.SET_ROUND,
-                          //   payload: !state.round,
-                          // })
-                        }}
-                        value="round"
-                        color="primary"
-                      />
-                    }
-                    label="Round"
-                  />
-                </Box>
-              </FormField>
+                  <Box>
+                    <Field
+                      name="start"
+                      component={FormikDatePicker}
+                      variant="outlined"
+                      label="First Payment Date"
+                      fullWidth
+                      disabled={isSubmitting}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </Box>
+                  <Box>
+                    <Field
+                      name="rate"
+                      component={TextField}
+                      variant="outlined"
+                      label="Intereset Rate"
+                      fullWidth
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">%</InputAdornment>
+                        ),
+                      }}
+                    />
+                  </Box>
+                </FormField>
+                <FormField>
+                  <FormControl variant="outlined" className={classes.formControl}>
+                    <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
+                      Payment schedule type
+                    </InputLabel>
+                    <Field
+                      name="procedure"
+                      component={Select}
+                      input={
+                        <OutlinedInput labelWidth={labelWidth} name="procedure" />
+                      }>
+                      <MenuItem value="A">Even Total</MenuItem>
+                      <MenuItem value="D">Even Principle</MenuItem>
+                    </Field>
+                  </FormControl>
+                  <Box>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={true}
+                          disabled={isSubmitting}
+                          onChange={() => {
+                            console.log('Round check is changed');
+                          } }
+                          value="round"
+                          color="primary"
+                        />
+                      }
+                      label="Round"
+                    />
+                  </Box>
+                </FormField>
               <CalculateButtonWrapper>
                 <Button
                   variant="contained"
