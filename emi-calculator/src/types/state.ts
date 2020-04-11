@@ -23,5 +23,5 @@ export interface ILoanState extends Readonly<{
     calculation?: ICalculation,
     values?: IFormData
     loading: boolean;
-    error: IStateError;
+    error?: IStateError;
 }>{}

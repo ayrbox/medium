@@ -8,35 +8,43 @@ import addMonths from "date-fns/addMonths";
 import format from "date-fns/format";
 // import { thousandsWithRound, getMonthlyPayment } from '../helpers';
 
-// const getFinalPaymentDate = (start: Date, term: number) =>
-//   format(addMonths(start, term), 'dd.MM.yyyy');
+const getFinalPaymentDate = (start: Date, term: number) =>
+  format(addMonths(start, term), 'dd.MM.yyyy');
 
 const LoanCalculation: React.FC = () => {
   const { state } = useContext(LoanContext);
 
-  // if (!state || !state.values || !state.calculation) return null;
-  if (!state || !state.calculation) return null;
+  if (!state || !state.values || !state.calculation) return null;
+
+  const { values, calculation } = state;
 
   return (
     <Box>
       <Box fontSize="0.6em">Monthly Payments</Box>
-      <Box mt="0.2em" fontWeight={300} />
+      <Box mt="0.2em" fontWeight={300}>
+        {state.currencies[0]}
+        {calculation.paymentSchedule[0].payment}
+      </Box>
       <List>
         <ListItem>
           <Box fontSize="1rem">Total Interest Paid</Box>
           <Box fontWeight="500" fontSize="0.6em">
             {state.currencies[0]}
+            {calculation.totalInterest}
           </Box>
         </ListItem>
         <ListItem>
           <Box fontSize="1rem">Total Payments</Box>
           <Box fontWeight="500" fontSize="0.6em">
             {state.currencies[0]}
+            {calculation.totalPayments}
           </Box>
         </ListItem>
         <ListItem>
           <Box fontSize="1rem">Final Payment Date</Box>
-          <Box fontWeight="500" fontSize="0.6em"></Box>
+          <Box fontWeight="500" fontSize="0.6em">
+            {getFinalPaymentDate(values.start, values.terms)}
+          </Box>
         </ListItem>
       </List>
       <Box
@@ -80,12 +88,15 @@ const LoanCalculation: React.FC = () => {
           <ChartLegend>
             <ChartLegendBlock>
               <ChartLegendDot color="#8120E2" />
+              Total principle
             </ChartLegendBlock>
             <ChartLegendBlock>
               <ChartLegendDot color="#4572FE" />
+              Total interest
             </ChartLegendBlock>
             <ChartLegendBlock>
               <ChartLegendDot color="#40C9EA" />
+              Total payments
             </ChartLegendBlock>
           </ChartLegend>
         </Box>
