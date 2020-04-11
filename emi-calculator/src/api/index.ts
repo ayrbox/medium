@@ -1,12 +1,14 @@
 import { ICalculation } from '../types/state';
+import { calulate }  from './mockCalculation';
+import { IFormData } from 'src/types/form';
 
 const API_URL = '/api';
 
-export const calculateLoan = (values: {}): Promise<ICalculation> => {
+export const calculateLoan = (values: IFormData): Promise<ICalculation> => {
   return new Promise<ICalculation>((resolve) => {
     setTimeout(() => {
-      console.log('Values', values);
-      resolve({} as ICalculation);
+      const calculations = calulate(values);
+      resolve(calculations)
     }, 500);
   });
 } ;

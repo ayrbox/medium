@@ -30,7 +30,7 @@ const schema = object<IFormData>().shape({
   start: date()
     .required("Required Field")
     .typeError("Pick or enter a correct date"),
-  term: number()
+  terms: number()
     .positive("Enter positive integer number")
     .required("Required Field")
     .integer("Enter positive integer number")
@@ -70,7 +70,7 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
   const [initialValues] = useState({
     procedure: "A",
     start: new Date(),
-    term: "60",
+    terms: "60",
     amount: "324000",
     rate: "2.0"
   });
@@ -131,11 +131,12 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
                 </Box>
                 <Box>
                   <Field
-                    name="term"
+                    name="terms"
                     component={TextField}
                     variant="outlined"
                     label="Loan Term"
                     fullWidth
+                    disabled={loading}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">months</InputAdornment>
@@ -165,6 +166,7 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
                     variant="outlined"
                     label="Intereset Rate"
                     fullWidth
+                    disabled={loading}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">%</InputAdornment>
@@ -181,6 +183,7 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
                   <Field
                     name="procedure"
                     component={Select}
+                    disabled={loading}
                     input={
                       <OutlinedInput labelWidth={labelWidth} name="procedure" />
                     }
@@ -219,6 +222,9 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
             </Form>
           )}
         </Formik>
+        <pre>
+          {JSON.stringify(state, null, 2)}
+        </pre>
       </MainWrapper>
     </Box>
   );
