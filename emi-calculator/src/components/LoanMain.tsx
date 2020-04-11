@@ -24,8 +24,8 @@ import FormikNumberFormat from "./FormikNumberFormat";
 import { IFormData } from '../types/form';
 
 const schema = object<IFormData>().shape({
-  procedure: string()
-    .matches(/(A|D)/)
+  payments: string()
+    .matches(/(EMI|EPI)/)
     .required("Required Field"),
   start: date()
     .required("Required Field")
@@ -68,7 +68,7 @@ const useStyles = makeStyles(() => ({
 
 const LoanMain: React.FC = (): React.ReactElement | null => {
   const [initialValues] = useState({
-    procedure: "A",
+    payments: "EMI",
     start: new Date(),
     terms: "60",
     amount: "324000",
@@ -181,15 +181,15 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
                     Payment schedule type
                   </InputLabel>
                   <Field
-                    name="procedure"
+                    name="payments"
                     component={Select}
                     disabled={loading}
                     input={
-                      <OutlinedInput labelWidth={labelWidth} name="procedure" />
+                      <OutlinedInput labelWidth={labelWidth} name="payments" />
                     }
                   >
-                    <MenuItem value="A">Even Total</MenuItem>
-                    <MenuItem value="D">Even Principal</MenuItem>
+                    <MenuItem value="EMI">Even Total</MenuItem>
+                    <MenuItem value="EPI">Even Principal</MenuItem>
                   </Field>
                 </FormControl>
                 <Box>

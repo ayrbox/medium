@@ -4,10 +4,10 @@ import { LoanActions, LoanActionTypes } from "./actions";
 
 export const initialState: ILoanState = {
   currencies: [
-    LoanCurrencies.NRP,
     LoanCurrencies.POUND,
     LoanCurrencies.DOLLAR,
-    LoanCurrencies.EURO
+    LoanCurrencies.EURO,
+    LoanCurrencies.NRP,
   ],
   loading: false,
   scheduleModalIsOpen: false,
