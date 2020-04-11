@@ -4,7 +4,7 @@ export enum LoanCurrencies {
     POUND = '£',
     EURO = '€',
     DOLLAR = '$',
-    NRP = 'Npr '
+    NRP = 'रू'
 }
 
 export interface IFormData {
