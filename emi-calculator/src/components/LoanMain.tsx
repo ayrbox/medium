@@ -21,8 +21,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { LoanContext } from "../contexts/LoanContext";
 import FormikDatePicker from "./FormikDatePicker";
 import FormikNumberFormat from "./FormikNumberFormat";
+import { IFormData } from '../types/form';
 
-const schema = object().shape({
+const schema = object<IFormData>().shape({
   procedure: string()
     .matches(/(A|D)/)
     .required("Required Field"),
@@ -65,13 +66,13 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const LoanMain: React.FC = () => {
+const LoanMain: React.FC = (): React.ReactElement | null => {
   const [initialValues] = useState({
     procedure: "A",
     start: new Date(),
-    term: "",
-    amount: "",
-    rate: ""
+    term: "60",
+    amount: "324000",
+    rate: "2.0"
   });
 
   const classes = useStyles();
@@ -81,9 +82,12 @@ const LoanMain: React.FC = () => {
     if (!inputLabel.current) return;
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
-  const { state, dispatch } = useContext(LoanContext);
+  const { state, actions } = useContext(LoanContext);
 
-  if (!state || !dispatch) return null;
+  if (!state || !actions) return null;
+
+
+  const { loading } = state;
 
   return (
     <Box>
@@ -91,11 +95,11 @@ const LoanMain: React.FC = () => {
         <h1>Loan Calculator</h1>
         <Formik
           initialValues={initialValues}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log("Submit Values: ", values);
+          onSubmit={(values) => {
+            actions.calculateLoan(schema.cast(values));
           }}
           validationSchema={schema}
-          render={({ isSubmitting }) => (
+        >{() => (
             <Form>
               <FormField>
                 <Box>
@@ -107,7 +111,7 @@ const LoanMain: React.FC = () => {
                     fullWidth
                     thousandSeparator
                     decimalScale={2}
-                    disabled={isSubmitting}
+                    disabled={loading}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -118,7 +122,7 @@ const LoanMain: React.FC = () => {
                               console.log("Dod you just try to click me");
                             }}
                           >
-                            GBP
+                            £
                           </IconButton>
                         </InputAdornment>
                       )
@@ -148,7 +152,7 @@ const LoanMain: React.FC = () => {
                     variant="outlined"
                     label="First Payment Date"
                     fullWidth
-                    disabled={isSubmitting}
+                    disabled={loading}
                     InputLabelProps={{
                       shrink: true
                     }}
@@ -190,7 +194,7 @@ const LoanMain: React.FC = () => {
                     control={
                       <Checkbox
                         checked={true}
-                        disabled={isSubmitting}
+                        disabled={loading}
                         onChange={() => {
                           console.log("Round check is changed");
                         }}
@@ -206,7 +210,7 @@ const LoanMain: React.FC = () => {
                 <Button
                   variant="contained"
                   className={classes.button}
-                  disabled={isSubmitting}
+                  disabled={loading}
                   type="submit"
                 >
                   Calculate
@@ -214,7 +218,7 @@ const LoanMain: React.FC = () => {
               </CalculateButtonWrapper>
             </Form>
           )}
-        />
+        </Formik>
       </MainWrapper>
     </Box>
   );

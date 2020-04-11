@@ -13,9 +13,15 @@ export interface ICalculation {
     paymentSchedule: ScheduleData[];
 }
 
+export interface IStateError {
+    message: string;
+    error?: Error;
+}
+
 export interface ILoanState extends Readonly<{
     currencies: string[],
-    calcuation?: ICalculation,
+    calculation?: ICalculation,
     values?: IFormData
     loading: boolean;
+    error: IStateError;
 }>{}

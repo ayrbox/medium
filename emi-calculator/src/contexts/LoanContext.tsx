@@ -7,39 +7,13 @@ import React, {
 } from 'react';
 
 import { ILoanState } from '../types/state';
-import { LoanActions, LoanActionTypes } from '../types/actions';
-import { LoanCurrencies } from '../types/form';
 
-const reducer = (state: ILoanState, action: LoanActions): ILoanState => {
-    switch(action.type) {
-        case LoanActionTypes.SET_CALCULATION: 
-            return {
-                ...state, 
-                calcuation: action.payload,
-            }
-        case LoanActionTypes.SET_FORM_VALUES:
-            return {
-                ...state,
-                values: action.payload,
-            }
-        default:
-            return state;
-    }
-}
-
-const initialState: ILoanState = {
-    currencies: [
-        LoanCurrencies.NRE,
-        LoanCurrencies.POUND,
-        LoanCurrencies.DOLLAR,
-        LoanCurrencies.EURO
-    ],
-    loading: false,
-}
+import reducer, { initialState }  from './reducer';
+import { calculateLoanDispatcher, Actions } from './actionDispatchers';
 
 interface LoanContextProps {
     state: ILoanState,
-    dispatch: Dispatch<LoanActions>; 
+    actions: Actions,
 }
 
 export const LoanContext = createContext<Partial<LoanContextProps>>({});
@@ -52,10 +26,16 @@ const LoanContextProvider: FC<LoanContextProviderProps> = ({
     children,
 }: LoanContextProviderProps): ReactElement => {
     const [state, dispatch] = useReducer(reducer, initialState);
+    
+    // actions function that page/component can evoke
+    const actions: Actions = {
+        calculateLoan: calculateLoanDispatcher(dispatch),
+    }
+
     return (
         <LoanContext.Provider value={{
             state,
-            dispatch,
+            actions,
         }}>
             {children}
         </LoanContext.Provider>

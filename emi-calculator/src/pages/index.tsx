@@ -4,9 +4,6 @@ import LoanContextProvider from '../contexts/LoanContext'
 import DateFnsUtils from '@date-io/date-fns';
 import enGB from 'date-fns/locale/en-GB';
 
-
-import TestComponent from '../components/TestComponent'
-
 import Layout from '../layouts';
 import {
   Main,
