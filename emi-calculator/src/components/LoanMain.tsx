@@ -196,11 +196,8 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={true}
-                        disabled={loading}
-                        onChange={() => {
-                          console.log("Round check is changed");
-                        }}
+                        checked={false}
+                        disabled
                         value="round"
                         color="primary"
                       />

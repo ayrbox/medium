@@ -84,16 +84,16 @@ const ScheduleModal: React.FC = () => {
                           {format(addMonths(start, scheduleIdx), "dd.MM.yyyy")}
                         </TableCell>
                         <TableCell align="right">
-                          {payment}
+                          {payment.toFixed(2)}
                         </TableCell>
                         <TableCell align="right">
-                          {interest}
+                          {interest.toFixed(2)}
                         </TableCell>
                         <TableCell align="right">
-                          {principal}
+                          {principal.toFixed(2)}
                         </TableCell>
                         <TableCell align="right">
-                          {balance}
+                          {balance.toFixed(2)}
                         </TableCell>
                       </TableRow>
                     ))}

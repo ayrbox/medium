@@ -22,21 +22,21 @@ const LoanCalculation: React.FC = () => {
       <h3>Monthly Payments</h3>
       <Box mt="0.2em" fontWeight={300}>
         {state.currencies[0]}
-        {calculation.paymentSchedule[0].payment}
+        {calculation.paymentSchedule[0].payment.toFixed(2)}
       </Box>
       <List>
         <ListItem>
           <Box fontSize="1rem">Total Interest Paid</Box>
           <Box fontWeight="500" fontSize="0.6em">
             {state.currencies[0]}
-            {calculation.totalInterest}
+            {calculation.totalInterest.toFixed(2)}
           </Box>
         </ListItem>
         <ListItem>
           <Box fontSize="1rem">Total Payments</Box>
           <Box fontWeight="500" fontSize="0.6em">
             {state.currencies[0]}
-            {calculation.totalPayments}
+            {calculation.totalPayments.toFixed(2)}
           </Box>
         </ListItem>
         <ListItem>
