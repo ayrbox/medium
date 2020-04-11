@@ -6,8 +6,7 @@ import { Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { LoanContext } from "../contexts/LoanContext";
 
-// import Loader from './Loader';
-// import { LoanActionTypes } from '../types';
+import Loader from './Loader';
 import LoanCalculation from './LoanCalculation';
 
 const useStyles = makeStyles(() => ({
@@ -34,7 +33,7 @@ const AsideMain: React.FC = (): React.ReactElement | null => {
   if (state.loading) {
     return (
       <LoaderWrapper>
-        <p>Loading...</p>
+        <Loader />
       </LoaderWrapper>
     );
   };
@@ -42,6 +41,7 @@ const AsideMain: React.FC = (): React.ReactElement | null => {
   return( 
     <Box>
       <h1>Calculations</h1>
+
       <Box lineHeight="1.8em" fontSize="0.5em" textAlign="justify">
         <strong>Even total payments</strong>
         The even total payment schedule is comprised of a decreasing interest
