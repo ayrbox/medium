@@ -8,6 +8,7 @@ import Layout from '../layouts';
 import {
   Main,
   Aside,
+  AsideMain,
   LoanMain,
 } from '../components';
 
@@ -38,7 +39,7 @@ export default class extends React.Component<IndexPageProps, {}> {
               <LoanMain />
             </Main>
             <Aside>
-              Secondary Place holder
+              <AsideMain />
             </Aside>
           </LoanContextProvider>
         </MuiPickersUtilsProvider>
