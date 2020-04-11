@@ -9,6 +9,11 @@ export const calculateLoanDispatcher = (dispatch : Dispatch<LoanActions>) => (va
     type: LoanActionTypes.REQUEST_CALCULATION,
   });
 
+  dispatch({
+    type: LoanActionTypes.SET_FORM_VALUES,
+    payload: values,
+  });
+
   calculateLoan(values)
     .then(data => {
       dispatch({
