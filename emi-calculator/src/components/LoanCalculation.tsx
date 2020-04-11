@@ -6,7 +6,6 @@ import PieChart from "react-minimal-pie-chart";
 import { LoanContext } from "../contexts/LoanContext";
 import addMonths from "date-fns/addMonths";
 import format from "date-fns/format";
-// import { thousandsWithRound, getMonthlyPayment } from '../helpers';
 
 const getFinalPaymentDate = (start: Date, term: number) =>
   format(addMonths(start, term), 'dd.MM.yyyy');
@@ -20,7 +19,7 @@ const LoanCalculation: React.FC = () => {
 
   return (
     <Box>
-      <Box fontSize="0.6em">Monthly Payments</Box>
+      <h3>Monthly Payments</h3>
       <Box mt="0.2em" fontWeight={300}>
         {state.currencies[0]}
         {calculation.paymentSchedule[0].payment}

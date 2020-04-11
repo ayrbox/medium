@@ -38,10 +38,25 @@ const AsideMain: React.FC = (): React.ReactElement | null => {
     );
   };
 
-  return( 
-    <Box>
-      <h1>Calculations</h1>
+  const { calculation, values } = state;
 
+  return (calculation && values) ? (
+      <Box>
+          <LoanCalculation />
+          <Box mt="2em">
+            <Button
+              variant="outlined"
+              className={classes.button}
+              onClick={() => {
+                actions.toggleScheduleModal(true);
+              }}>
+                Payment Schedule
+            </Button>
+          </Box>
+        </Box>
+    ): (
+    <Box>
+      <h3>Calculations</h3>
       <Box lineHeight="1.8em" fontSize="0.5em" textAlign="justify">
         <strong>Even total payments</strong>
         The even total payment schedule is comprised of a decreasing interest
@@ -56,21 +71,6 @@ const AsideMain: React.FC = (): React.ReactElement | null => {
         payment is the same for every payment. It is computed by dividing the
         amount of the original loan by the number of payments.
       </Box>
-      <hr />
-      <Box>
-        <LoanCalculation />
-        <Box mt="2em">
-          <Button
-            variant="outlined"
-            className={classes.button}
-            onClick={() => {
-              actions.toggleScheduleModal(true);
-            }}>
-              Payment Schedule
-          </Button>
-        </Box>
-      </Box>
-
     </Box>
   );
 };
