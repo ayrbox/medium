@@ -32,8 +32,16 @@ export const calculateLoanDispatcher = (dispatch : Dispatch<LoanActions>) => (va
     });
 }
 
+export const toggleScheduleModalDispatcher = (dispatch: Dispatch<LoanActions>) => (showState: boolean) => {
+  dispatch({
+    type: LoanActionTypes.TOGGLE_SCHEDULES_MODAL,
+    payload: showState,
+  });
+}
+
 // Action object type that pages see
 // If possible this should be automatic type cast
 export type Actions = {
   calculateLoan: (values: IFormData) => void;
+  toggleScheduleModal: (showState: boolean) => void;
 }

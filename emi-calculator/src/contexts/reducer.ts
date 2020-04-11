@@ -9,7 +9,8 @@ export const initialState: ILoanState = {
     LoanCurrencies.DOLLAR,
     LoanCurrencies.EURO
   ],
-  loading: false
+  loading: false,
+  scheduleModalIsOpen: false,
 };
 
 const reducer = (state: ILoanState, action: LoanActions): ILoanState => {
@@ -37,6 +38,11 @@ const reducer = (state: ILoanState, action: LoanActions): ILoanState => {
         ...state,
         values: action.payload
       };
+    case LoanActionTypes.TOGGLE_SCHEDULES_MODAL: 
+      return {
+        ...state,
+        scheduleModalIsOpen: action.payload,
+      }
     default:
       return state;
   }

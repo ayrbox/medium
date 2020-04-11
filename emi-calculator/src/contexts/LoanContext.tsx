@@ -2,14 +2,17 @@ import React, {
     FC,
     createContext,
     useReducer,
-    Dispatch,
     ReactElement,
 } from 'react';
 
 import { ILoanState } from '../types/state';
 
 import reducer, { initialState }  from './reducer';
-import { calculateLoanDispatcher, Actions } from './actionDispatchers';
+import {
+    Actions,
+    calculateLoanDispatcher,
+    toggleScheduleModalDispatcher,
+} from './actionDispatchers';
 
 interface LoanContextProps {
     state: ILoanState,
@@ -30,6 +33,7 @@ const LoanContextProvider: FC<LoanContextProviderProps> = ({
     // actions function that page/component can evoke
     const actions: Actions = {
         calculateLoan: calculateLoanDispatcher(dispatch),
+        toggleScheduleModal: toggleScheduleModalDispatcher(dispatch),
     }
 
     return (

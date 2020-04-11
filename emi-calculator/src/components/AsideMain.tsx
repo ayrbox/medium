@@ -63,9 +63,9 @@ const AsideMain: React.FC = (): React.ReactElement | null => {
           <Button
             variant="outlined"
             className={classes.button}
-            onClick={() =>{
-              console.log('show something')
-            } }>
+            onClick={() => {
+              actions.toggleScheduleModal(true);
+            }}>
               Payment Schedule
           </Button>
         </Box>

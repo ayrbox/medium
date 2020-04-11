@@ -24,4 +24,5 @@ export interface ILoanState extends Readonly<{
     values?: IFormData
     loading: boolean;
     error?: IStateError;
+    scheduleModalIsOpen: boolean;
 }>{}
