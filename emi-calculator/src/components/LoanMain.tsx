@@ -222,9 +222,6 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
             </Form>
           )}
         </Formik>
-        <pre>
-          {JSON.stringify(state, null, 2)}
-        </pre>
       </MainWrapper>
     </Box>
   );
