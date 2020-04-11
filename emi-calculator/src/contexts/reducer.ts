@@ -19,6 +19,7 @@ const reducer = (state: ILoanState, action: LoanActions): ILoanState => {
         return {
             ...state,
             loading: true,
+            values: action.payload,
         } 
     case LoanActionTypes.SET_CALCULATION:
       return {
@@ -33,11 +34,6 @@ const reducer = (state: ILoanState, action: LoanActions): ILoanState => {
             loading: false,
             error: action.payload
         }
-    case LoanActionTypes.SET_FORM_VALUES:
-      return {
-        ...state,
-        values: action.payload
-      };
     case LoanActionTypes.TOGGLE_SCHEDULES_MODAL: 
       return {
         ...state,

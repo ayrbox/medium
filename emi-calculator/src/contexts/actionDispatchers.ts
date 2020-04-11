@@ -7,10 +7,6 @@ import { IFormData } from '../types/form';
 export const calculateLoanDispatcher = (dispatch : Dispatch<LoanActions>) => (values : IFormData) => {
   dispatch({
     type: LoanActionTypes.REQUEST_CALCULATION,
-  });
-
-  dispatch({
-    type: LoanActionTypes.SET_FORM_VALUES,
     payload: values,
   });
 

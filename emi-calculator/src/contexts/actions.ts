@@ -5,7 +5,6 @@ export enum LoanActionTypes {
     REQUEST_CALCULATION = 'REQUEST_CALCULATION',
     SET_CALCULATION = 'SET_CALCULATION',
     SET_CALCULATION_ERROR = 'SET_CALCULATION_ERROR',
-    SET_FORM_VALUES = 'SET_FORM_VALUES',
     TOGGLE_SCHEDULES_MODAL = 'TOGGLE_SCHEDULES_MODAL',
 }
 
@@ -16,11 +15,6 @@ export enum LoanActionTypes {
  */
 interface IAction { 
     readonly type: string;
-}
-
-class LoanSetFormValues implements IAction {
-    readonly type = LoanActionTypes.SET_FORM_VALUES;
-    constructor(public payload: IFormData) { }
 }
 
 class LoanSetCalcuation implements IAction {
@@ -38,6 +32,7 @@ class SetCalculationError implements IAction {
 
 class RequestCalculation implements IAction {
     readonly type = LoanActionTypes.REQUEST_CALCULATION;
+    constructor(public payload: IFormData) {};
 }
 
 class ToggleScheduleModal implements IAction {
@@ -46,7 +41,6 @@ class ToggleScheduleModal implements IAction {
 }
  
 export type LoanActions = 
-    | LoanSetFormValues
     | LoanSetCalcuation
     | SetCalculationError
     | RequestCalculation
