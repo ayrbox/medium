@@ -74,7 +74,7 @@ const LoanCalculation: React.FC = () => {
                 color: "#4572FE"
               },
               {
-                title: "Total Principle paid",
+                title: "Total Principal paid",
                 value: 324000, //state.values.amount,
                 color: "#8120E2"
               }
@@ -87,7 +87,7 @@ const LoanCalculation: React.FC = () => {
           <ChartLegend>
             <ChartLegendBlock>
               <ChartLegendDot color="#8120E2" />
-              Total principle
+              Total principal
             </ChartLegendBlock>
             <ChartLegendBlock>
               <ChartLegendDot color="#4572FE" />

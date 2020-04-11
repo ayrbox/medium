@@ -2,7 +2,7 @@ import { IFormData } from "./form";
 
 export type ScheduleData = {
     interest: number;
-    principle: number;
+    principal: number;
     payment: number;
     balance: number;
 } 

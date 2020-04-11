@@ -68,7 +68,7 @@ const ScheduleModal: React.FC = () => {
                       <TableCell>Payment Date</TableCell>
                       <TableCell align="right">Total payments</TableCell>
                       <TableCell align="right">Interest</TableCell>
-                      <TableCell align="right">Principle</TableCell>
+                      <TableCell align="right">Principal</TableCell>
                       <TableCell align="right">Unpaid balance</TableCell>
                     </TableRow>
                   </TableHead>
@@ -77,7 +77,7 @@ const ScheduleModal: React.FC = () => {
                       balance,
                       payment,
                       interest,
-                      principle,
+                      principal,
                     }, scheduleIdx) => (
                       <TableRow key={balance}>
                         <TableCell component="th" scope="row">
@@ -90,7 +90,7 @@ const ScheduleModal: React.FC = () => {
                           {interest}
                         </TableCell>
                         <TableCell align="right">
-                          {principle}
+                          {principal}
                         </TableCell>
                         <TableCell align="right">
                           {balance}

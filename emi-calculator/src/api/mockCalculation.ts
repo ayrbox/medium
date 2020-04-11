@@ -30,12 +30,12 @@ function calculateEvenTotalSchedule(input: IFormData, monthlyInterestRate: numbe
   const scheduleData: ScheduleData[] = [];
 	for (let i = 0; i < input.terms; i += 1) {
 		const interest = amount * monthlyInterestRate;
-		const principle = payment - interest;
-    const balance = amount - principle;
+		const principal = payment - interest;
+    const balance = amount - principal;
 
     scheduleData.push({
       interest,
-      principle,
+      principal,
       balance,
       payment,
     });
@@ -49,14 +49,14 @@ function calculateEvenPrincipalSchedule(input: IFormData): ScheduleData[] {
   let amount = input.amount;
   const scheduleData: ScheduleData[] = [];
 
-  const principle = amount / input.terms;
+  const principal = amount / input.terms;
 	for (let i = 0; i < input.terms; i++) {
 		const interest = amount * input.rate / (100 * 12);
-		const payment = principle + interest;
-    const balance = amount - principle;
+		const payment = principal + interest;
+    const balance = amount - principal;
     scheduleData.push({
       interest,
-      principle,
+      principal,
       balance,
       payment,
     })

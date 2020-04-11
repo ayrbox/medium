@@ -189,7 +189,7 @@ const LoanMain: React.FC = (): React.ReactElement | null => {
                     }
                   >
                     <MenuItem value="A">Even Total</MenuItem>
-                    <MenuItem value="D">Even Principle</MenuItem>
+                    <MenuItem value="D">Even Principal</MenuItem>
                   </Field>
                 </FormControl>
                 <Box>
