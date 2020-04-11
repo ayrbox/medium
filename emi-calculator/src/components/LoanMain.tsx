@@ -271,13 +271,4 @@ const CalculateButtonWrapper = styled.div`
   }
 `;
 
-const CalculationModalWrapper = styled.div`
-  padding: 1.5em 1em;
-  width: 80vw;
-  height: auto;
-  background: white;
-  text-align: center;
-  border-radius: 4px;
-`;
-
 export default LoanMain;

@@ -10,6 +10,7 @@ import {
   Aside,
   AsideMain,
   LoanMain,
+  ScheduleModal,
 } from '../components';
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
@@ -37,6 +38,7 @@ export default class extends React.Component<IndexPageProps, {}> {
           <LoanContextProvider>
             <Main>
               <LoanMain />
+              <ScheduleModal />
             </Main>
             <Aside>
               <AsideMain />
