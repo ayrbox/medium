@@ -8,6 +8,9 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "dev": "nodemon ."
+    "dev": "nodemon express.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
