@@ -1,0 +1,13 @@
+{
+  "name": "udemy-nodejs-the-complete-guide",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ayrbox",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "dev": "nodemon ."
+  }
+}
