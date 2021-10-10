@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  database:
+    image: postgres:latest
+    volumes:
+      - nocodb:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DATABASES: noco_db 
+      POSTGRES_USER: noco_user 
+      POSTGRES_PASSWORD: noco_password 
+    networks:
+      noco-network:
+  noco:
+    image: nocodb/nocodb:latest
+    ports:
+      - '8080:8080'
+    networks:
+      noco-network:
+
+networks:
+  noco-network:
+volumes:
+  nocodb:
