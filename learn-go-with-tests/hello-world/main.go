@@ -1,17 +1,11 @@
 package main
 
-import "fmt"
-
-const englishHelloPrefix = "Hello "
-
-func GetMessage(name string) string {
-	if name == "" {
-		name = "World"
-	}
-	return englishHelloPrefix + name
-}
+import (
+	"fmt"
+	helloworld "hello/helloworld"
+)
 
 func main() {
-	msg := GetMessage("Andy")
+	msg := helloworld.GetMessage("Andy", "English")
 	fmt.Println(msg)
 }
